@@ -82,14 +82,19 @@ quit
 
 load enzyme.pdb, enzyme
 
+# Remove hydrogens for clean rendering
+remove hydrogens
+
 hide everything
 show cartoon, enzyme
 color palecyan, enzyme
 
-# Show active site residues as sticks
-show sticks, enzyme and resi 45+72+110+145
-color atomic, enzyme and resi 45+72+110+145
-util.cnc enzyme and resi 45+72+110+145  # color by element, keep carbons
+# Enable side chain helper to connect sticks to cartoon backbone
+set cartoon_side_chain_helper, 1
+
+# Show active site residues as sticks (including CA)
+show sticks, enzyme and resi 45+72+110+145 and (sidechain or name CA)
+util.cnc enzyme and resi 45+72+110+145  # color by element, keep carbon color
 
 # Zoom into active site
 center enzyme and resi 45+72+110+145

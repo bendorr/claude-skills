@@ -136,6 +136,35 @@ set ray_opaque_background, 0
 png output.png, width=2400, height=2400, dpi=300, ray=1
 ```
 
+## Showing Sidechains
+
+When showing sidechain atoms (e.g. for active site residues, disulfide bonds, or any residue-level detail), always follow these conventions:
+
+1. **Remove hydrogens** before rendering to keep the figure clean:
+
+```python
+remove hydrogens
+```
+
+2. **Enable cartoon side chain helper** so sticks connect visually to the cartoon backbone:
+
+```python
+set cartoon_side_chain_helper, 1
+```
+
+3. **Show sidechains as sticks** including the CA atom, and **color by element preserving carbon color** using `util.cnc`. This keeps the existing carbon color (e.g. rainbow, chain color) while coloring heteroatoms by element (blue for nitrogen, red for oxygen, yellow for sulfur, etc.):
+
+```python
+show sticks, selection and (sidechain or name CA)
+util.cnc selection and (sidechain or name CA)
+```
+
+If a specific element needs a custom color override, apply it after `util.cnc`:
+
+```python
+color yellow, selection and elem S
+```
+
 ## Key Reminders
 
 - Always use `ray=1` in the `png` command or call `ray` before `png` to ensure ray tracing is applied.

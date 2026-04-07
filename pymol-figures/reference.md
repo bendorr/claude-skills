@@ -22,6 +22,14 @@
 | `super mobile, target` | Structures have low sequence identity but similar fold |
 | `cealign target, mobile` | Structures have very different sequences or folds. Note: argument order is reversed compared to `align`/`super` |
 
+## Sidechain Display Settings
+
+| Setting / Command | Value | Purpose |
+|-------------------|-------|---------|
+| `cartoon_side_chain_helper` | `1` | Connects stick sidechains to the cartoon backbone with a visible stub from the CA atom |
+| `remove hydrogens` | — | Removes hydrogen atoms for cleaner sidechain rendering |
+| `util.cnc selection` | — | Colors heteroatoms by element (N=blue, O=red, S=yellow, etc.) while preserving the existing carbon color |
+
 ## Common Representations
 
 | Representation | Command | Best For |
