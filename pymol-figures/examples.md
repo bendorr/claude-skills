@@ -22,6 +22,7 @@ set cartoon_loop_radius, 0.3
 set ray_trace_gain, 0
 set ambient, 0.3
 set ray_trace_color, black
+set cartoon_side_chain_helper, 1
 set ray_opaque_background, 0
 
 png protein_cartoon.png, width=2400, height=2400, dpi=300, ray=1
@@ -59,6 +60,7 @@ set cartoon_loop_radius, 0.3
 set ray_trace_gain, 0
 set ambient, 0.3
 set ray_trace_color, black
+set cartoon_side_chain_helper, 1
 set ray_opaque_background, 0
 
 # Save wildtype
@@ -94,7 +96,8 @@ set cartoon_side_chain_helper, 1
 
 # Show active site residues as sticks (including CA)
 show sticks, enzyme and resi 45+72+110+145 and (sidechain or name CA)
-util.cnc enzyme and resi 45+72+110+145  # color by element, keep carbon color
+# util.cnc colors N, O, S by element but keeps C as the cartoon color (palecyan)
+util.cnc enzyme and resi 45+72+110+145
 
 # Zoom into active site
 center enzyme and resi 45+72+110+145
@@ -108,6 +111,7 @@ set cartoon_loop_radius, 0.3
 set ray_trace_gain, 0
 set ambient, 0.3
 set ray_trace_color, black
+set cartoon_side_chain_helper, 1
 set ray_opaque_background, 0
 
 png active_site.png, width=2400, height=2400, dpi=300, ray=1
@@ -142,6 +146,7 @@ set cartoon_loop_radius, 0.3
 set ray_trace_gain, 0
 set ambient, 0.3
 set ray_trace_color, black
+set cartoon_side_chain_helper, 1
 set ray_opaque_background, 0
 
 # Define colors
@@ -188,6 +193,7 @@ set cartoon_loop_radius, 0.3
 set ray_trace_gain, 0
 set ambient, 0.3
 set ray_trace_color, black
+set cartoon_side_chain_helper, 1
 set ray_opaque_background, 0
 
 png overlay.png, width=2400, height=2400, dpi=300, ray=1

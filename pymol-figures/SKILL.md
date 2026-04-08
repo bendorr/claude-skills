@@ -32,9 +32,27 @@ set cartoon_loop_radius, 0.3
 set ray_trace_gain, 0
 set ambient, 0.3
 set ray_trace_color, black
+set cartoon_side_chain_helper, 1
 ```
 
-These settings produce clean, flat-shaded figures with black outlines and no specular highlights or shadows — ideal for publications and presentations.
+These settings produce clean, flat-shaded figures with black outlines and no specular highlights or shadows — ideal for publications and presentations. The `cartoon_side_chain_helper` setting connects stick-representation side chains back to their cartoon backbone, preventing floating side chains.
+
+## Side Chain Carbon Coloring
+
+When showing residues as sticks alongside a cartoon backbone, **color the carbon atoms to match the cartoon color of that chain** rather than using a uniform carbon color. Use `util.cnc` to color non-carbon atoms by element while preserving the chain's cartoon color on carbons.
+
+```python
+# Example: show active site sticks with carbons matching backbone color
+show cartoon, protein
+color marine, chain A
+
+# Show specific residues as sticks
+show sticks, chain A and resi 100+200+300
+# util.cnc colors N, O, S by element but leaves C unchanged (keeps marine)
+util.cnc chain A and resi 100+200+300
+```
+
+This keeps the figure visually cohesive — you can immediately tell which chain a side chain belongs to by its carbon color.
 
 ## Transparent Background
 
@@ -130,6 +148,7 @@ set cartoon_loop_radius, 0.3
 set ray_trace_gain, 0
 set ambient, 0.3
 set ray_trace_color, black
+set cartoon_side_chain_helper, 1
 set ray_opaque_background, 0
 
 # 7. Save

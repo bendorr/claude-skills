@@ -12,6 +12,7 @@
 | `ray_trace_gain` | `0` | Controls outline darkness; 0 gives clean outlines without over-darkening |
 | `ambient` | `0.3` | Base ambient lighting; 0.3 gives even illumination without washing out color |
 | `ray_trace_color` | `black` | Color of the ray trace outlines |
+| `cartoon_side_chain_helper` | `1` | Connects stick side chains back to their cartoon backbone (prevents floating sticks) |
 | `ray_opaque_background` | `0` | Transparent background (essential for compositing figures) |
 
 ## Alignment Commands
@@ -39,6 +40,23 @@
 | Surface | `show surface` | Shape complementarity, binding interfaces |
 | Spheres | `show spheres` | Space-filling models, atom-level detail |
 | Mesh | `show mesh` | Surface with underlying structure visible |
+
+## Side Chain Carbon Coloring Convention
+
+When showing residues as sticks, **keep carbon atoms the same color as their chain's cartoon backbone**. Use `util.cnc` (color by element, preserving carbon color) instead of `color atomic` or `util.cbag`:
+
+```python
+# Correct: carbons stay marine (matching chain A cartoon), heteroatoms colored by element
+color marine, chain A
+show sticks, chain A and resi 100+200
+util.cnc chain A and resi 100+200
+
+# Wrong: do NOT recolor carbons to a different uniform color
+# color atomic, chain A and resi 100+200    # makes all carbons gray
+# util.cbag chain A and resi 100+200        # makes carbons green
+```
+
+This makes it visually clear which chain each side chain belongs to.
 
 ## Useful Color Schemes
 
