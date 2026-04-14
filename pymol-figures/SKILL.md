@@ -54,21 +54,19 @@ util.cnc chain A and resi 100+200+300
 
 This keeps the figure visually cohesive — you can immediately tell which chain a side chain belongs to by its carbon color.
 
-## Transparent Background
+## Image Export
 
-Always set a transparent background before saving:
+Always export images as **ray traced PNGs with transparent backgrounds**. This ensures clean, publication-quality output that can be composited onto any background.
 
 ```python
 set ray_opaque_background, 0
-```
-
-Save images as PNG to preserve transparency:
-
-```python
 png output.png, width=2400, height=2400, dpi=300, ray=1
 ```
 
-Default to 2400x2400 at 300 DPI unless the user specifies otherwise.
+- `ray=1` in the `png` command (or call `ray` before `png`) ensures ray tracing is applied.
+- `ray_opaque_background, 0` makes the background transparent.
+- Save as PNG to preserve the alpha channel. Never use JPG (no transparency support).
+- Default to 2400x2400 at 300 DPI unless the user specifies otherwise.
 
 ## Aligning Multiple Structures
 
